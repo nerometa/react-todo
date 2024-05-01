@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import type { Todo } from '@/models';
+import { useEffect, useState } from 'react';
 
 export function useTodo() {
 	const [todoList, setTodoList] = useState<Todo[]>(() =>
