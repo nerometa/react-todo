@@ -3,7 +3,6 @@ import TodoList from '@/components/TodoList';
 import { Box, Container, Heading, Select } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import './App.css';
 import { TodoDisplayStatus } from './models';
 import { filterByStatus } from './redux/features/todoListSlice';
 import { useAppSelector } from './redux/store/store';
