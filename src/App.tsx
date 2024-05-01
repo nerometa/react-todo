@@ -2,7 +2,7 @@ import { AddTodo } from '@/components/AddTodo';
 import { useTodo } from '@/hooks/useTodo';
 import { Container, Heading } from '@chakra-ui/react';
 import './App.css';
-import TodoList from './components/TodoList';
+import TodoList from '@/components/TodoList';
 
 function App() {
 	const [todoList, addTodo, updateTodo, deleteTodo] = useTodo();

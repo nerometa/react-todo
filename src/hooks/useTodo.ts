@@ -21,6 +21,7 @@ export function useTodo() {
 				if (item.id === todo.id) {
 					item.title = todo.title;
 					item.description = todo.description;
+					item.isCompleted = todo.isCompleted;
 				}
 				return item;
 			})

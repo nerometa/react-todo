@@ -17,6 +17,7 @@ export function AddTodo({ addTodo }: Props) {
 			id: crypto.randomUUID(),
 			title: todo,
 			description: null,
+			isCompleted: false,
 		});
 		setTodo('');
 	};
