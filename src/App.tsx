@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {
+	Box,
+	Card,
+	CardBody,
+	Container,
+	Heading,
+	Stack,
+	Text,
+} from '@chakra-ui/react';
+import './App.css';
+import { AddTodo } from '@/components/AddTodo';
+import { useTodo } from '@/hooks/useTodo';
 
 function App() {
-  const [count, setCount] = useState(0)
+	const [todoList, addTodo] = useTodo();
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	return (
+		<Container mx='auto' maxW={750}>
+			<Heading as='h1' pt={'2rem'} pb={'3rem'} textAlign={'center'}>
+				React Todo
+			</Heading>
+
+			<AddTodo addTodo={addTodo} />
+
+			<Card id='todo-list'>
+				<CardBody>
+					<Stack spacing='4'>
+						{todoList.map((item) => (
+							<Box
+								borderWidth={1}
+								borderRadius={6}
+								p={4}
+								key={item.id}>
+								<Text fontWeight={'bold'}>{item.title}</Text>
+								{item.description && (
+									<Text pt='2' fontSize='sm'>
+										{item.description}
+									</Text>
+								)}
+							</Box>
+						))}
+					</Stack>
+				</CardBody>
+			</Card>
+		</Container>
+	);
 }
 
-export default App
+export default App;
