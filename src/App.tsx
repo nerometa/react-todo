@@ -1,18 +1,23 @@
+import { AddTodo } from '@/components/AddTodo';
+import { useTodo } from '@/hooks/useTodo';
 import {
 	Box,
+	Button,
 	Card,
 	CardBody,
 	Container,
+	Flex,
 	Heading,
 	Stack,
 	Text,
+	VisuallyHidden,
 } from '@chakra-ui/react';
+import { FiTrash } from 'react-icons/fi';
 import './App.css';
-import { AddTodo } from '@/components/AddTodo';
-import { useTodo } from '@/hooks/useTodo';
+import TodoList from './components/TodoList';
 
 function App() {
-	const [todoList, addTodo] = useTodo();
+	const [todoList, addTodo, deleteTodo] = useTodo();
 
 	return (
 		<Container mx='auto' maxW={750}>
@@ -21,27 +26,7 @@ function App() {
 			</Heading>
 
 			<AddTodo addTodo={addTodo} />
-
-			<Card id='todo-list'>
-				<CardBody>
-					<Stack spacing='4'>
-						{todoList.map((item) => (
-							<Box
-								borderWidth={1}
-								borderRadius={6}
-								p={4}
-								key={item.id}>
-								<Text fontWeight={'bold'}>{item.title}</Text>
-								{item.description && (
-									<Text pt='2' fontSize='sm'>
-										{item.description}
-									</Text>
-								)}
-							</Box>
-						))}
-					</Stack>
-				</CardBody>
-			</Card>
+			<TodoList deleteTodo={deleteTodo} todoList={todoList} />
 		</Container>
 	);
 }

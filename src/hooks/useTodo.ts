@@ -24,9 +24,10 @@ export function useTodo() {
 		localStorage.setItem('todoList', JSON.stringify(todoListExample));
 	}, []);
 
-	const addTodo = (todo: Todo) => {
-		setTodoList([...todoList, todo]);
-	};
+	const addTodo = (todo: Todo) => setTodoList([...todoList, todo]);
 
-	return [todoList, addTodo] as const;
+	const deleteTodo = (id: string) =>
+		setTodoList(todoList.filter((todo) => todo.id !== id));
+
+	return [todoList, addTodo, deleteTodo] as const;
 }
