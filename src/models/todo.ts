@@ -4,3 +4,5 @@ export type Todo = {
 	description: string | null;
 	isCompleted: boolean;
 };
+
+export type TodoDisplayStatus = 'all' | 'completed' | 'incompleted';

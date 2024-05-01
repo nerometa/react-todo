@@ -24,11 +24,13 @@ export function AddTodo() {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<FormControl padding={5} isRequired>
+			<FormControl pb={8} isRequired>
 				<Flex gap={2}>
 					<Input
 						type='text'
+						variant='filled'
 						placeholder="What's your task today?"
+						_focusVisible={{ bg: 'white' }}
 						value={todo}
 						onInput={onTodoInput}
 					/>

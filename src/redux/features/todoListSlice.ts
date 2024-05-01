@@ -1,14 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store/store';
-import { Todo } from '@/models';
+import { Todo, TodoDisplayStatus } from '@/models';
 
 interface TodoListState {
 	todoList: Todo[];
+	filteredTodoList: Todo[] | null;
 }
 
 // Define the initial state using that type
 const initialState: TodoListState = {
 	todoList: [],
+	filteredTodoList: [],
 };
 
 export const todoListSlice = createSlice({
@@ -26,7 +28,7 @@ export const todoListSlice = createSlice({
 		deleteTodo: (state, action: PayloadAction<string>) => {
 			let newState = { ...state };
 			return {
-				newState,
+				...newState,
 				todoList: newState.todoList.filter(
 					(todo) => todo.id !== action.payload
 				),
@@ -35,7 +37,7 @@ export const todoListSlice = createSlice({
 		updateTodo: (state, action: PayloadAction<Todo>) => {
 			let newState = { ...state };
 			return {
-				newState,
+				...newState,
 				todoList: newState.todoList.map((todo) => {
 					if (todo.id !== action.payload.id) return todo;
 
@@ -47,9 +49,36 @@ export const todoListSlice = createSlice({
 				}),
 			};
 		},
+		filterByStatus: (state, action: PayloadAction<TodoDisplayStatus>) => {
+			let status = action.payload;
+			let newState = { ...state };
+			let filteredTodoList: Todo[] | null;
+
+			switch (status) {
+				case 'all':
+					filteredTodoList = null;
+					break;
+				case 'completed':
+					filteredTodoList = newState.todoList.filter(
+						(todo) => todo.isCompleted === true
+					);
+					break;
+				case 'incompleted':
+					filteredTodoList = newState.todoList.filter(
+						(todo) => todo.isCompleted === false
+					);
+					break;
+			}
+
+			return {
+				...newState,
+				filteredTodoList: filteredTodoList,
+			};
+		},
 	},
 });
 
-export const { addTodo, deleteTodo, updateTodo } = todoListSlice.actions;
+export const { addTodo, deleteTodo, updateTodo, filterByStatus } =
+	todoListSlice.actions;
 
 export default todoListSlice.reducer;

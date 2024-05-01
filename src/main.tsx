@@ -1,4 +1,4 @@
-import { ChakraProvider } from '@chakra-ui/react';
+import { Box, ChakraProvider } from '@chakra-ui/react';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -12,7 +12,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 		<ChakraProvider>
 			<Provider store={store}>
 				<PersistGate persistor={persistor}>
-					<App />
+					<Box height={'100vh'}>
+						<App />
+					</Box>
 				</PersistGate>
 			</Provider>
 		</ChakraProvider>
