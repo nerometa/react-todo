@@ -27,7 +27,7 @@ export function TodoUpdateModal({ isOpen, onClose, todo, updateTodo }: Props) {
 	const [newTodo, setNewTodo] = useState<Todo>(todo);
 	const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
 		setNewTodo({ ...todo, title: e.target.value });
-	const onDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+	const onDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
 		setNewTodo({ ...todo, description: e.target.value });
 
 	const onClickEdit = () => {
