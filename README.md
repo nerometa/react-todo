@@ -1,6 +1,7 @@
 # React Todo App
 
 A todo application made with React + Redux + Chakra UI + TypeScript
+
 [Site](https://react-todo-amhdtfud9-nerometas-projects.vercel.app/)
 
 ## Installation
