@@ -36,7 +36,10 @@ export default function TodoList({ todoList, deleteTodo, updateTodo }: Props) {
 							<Box flex={1} p={4}>
 								<Text fontWeight={'bold'}>{todo.title}</Text>
 								{todo.description && (
-									<Text pt='2' fontSize='sm'>
+									<Text
+										overflowWrap={'break-word'}
+										pt='2'
+										fontSize='sm'>
 										{todo.description}
 									</Text>
 								)}

@@ -12,6 +12,7 @@ import {
 	ModalFooter,
 	ModalHeader,
 	ModalOverlay,
+	Textarea,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
@@ -61,8 +62,7 @@ export function TodoUpdateModal({ isOpen, onClose, todo, updateTodo }: Props) {
 						</FormControl>
 						<FormControl>
 							<FormLabel fontWeight={600}>Description</FormLabel>
-							<Input
-								type='text'
+							<Textarea
 								placeholder='What is this todo about?'
 								value={newTodo.description || ''}
 								onChange={onDescriptionChange}
