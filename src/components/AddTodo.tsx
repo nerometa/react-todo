@@ -1,24 +1,24 @@
-import type { Todo } from '@/models';
+import { addTodo } from '@/redux/features/todoListSlice';
+import { useAppDispatch } from '@/redux/store/store';
 import { Button, Flex, FormControl, Input } from '@chakra-ui/react';
 import { useState, type SyntheticEvent } from 'react';
 
-type Props = {
-	addTodo: (todo: Todo) => void;
-};
-
-export function AddTodo({ addTodo }: Props) {
+export function AddTodo() {
 	const [todo, setTodo] = useState('');
+	const dispatch = useAppDispatch();
 
 	const onTodoInput = (e: React.ChangeEvent<HTMLInputElement>) =>
 		setTodo(e.target.value);
 	const handleSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
-		addTodo({
-			id: crypto.randomUUID(),
-			title: todo,
-			description: null,
-			isCompleted: false,
-		});
+		dispatch(
+			addTodo({
+				id: crypto.randomUUID(),
+				title: todo,
+				description: null,
+				isCompleted: false,
+			})
+		);
 		setTodo('');
 	};
 

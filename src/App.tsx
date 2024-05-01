@@ -1,11 +1,11 @@
 import { AddTodo } from '@/components/AddTodo';
 import TodoList from '@/components/TodoList';
-import { useTodo } from '@/hooks/useTodo';
 import { Container, Heading } from '@chakra-ui/react';
 import './App.css';
+import { useAppSelector } from './redux/store/store';
 
 function App() {
-	const [todoList, addTodo, updateTodo, deleteTodo] = useTodo();
+	const todoList = useAppSelector((state) => state.todoList.todoList);
 
 	return (
 		<Container mx='auto' maxW={750}>
@@ -13,12 +13,8 @@ function App() {
 				React Todo
 			</Heading>
 
-			<AddTodo addTodo={addTodo} />
-			<TodoList
-				updateTodo={updateTodo}
-				deleteTodo={deleteTodo}
-				todoList={todoList}
-			/>
+			<AddTodo />
+			<TodoList todoList={todoList} />
 		</Container>
 	);
 }

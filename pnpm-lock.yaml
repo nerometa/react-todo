@@ -17,6 +17,9 @@ importers:
       '@emotion/styled':
         specifier: ^11.11.5
         version: 11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1)
+      '@reduxjs/toolkit':
+        specifier: ^2.2.3
+        version: 2.2.3(react-redux@9.1.1(@types/react@18.3.1)(react@18.3.1)(redux@5.0.1))(react@18.3.1)
       framer-motion:
         specifier: ^11.1.7
         version: 11.1.7(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -29,6 +32,12 @@ importers:
       react-icons:
         specifier: ^5.2.0
         version: 5.2.0(react@18.3.1)
+      react-redux:
+        specifier: ^9.1.1
+        version: 9.1.1(@types/react@18.3.1)(react@18.3.1)(redux@5.0.1)
+      redux-persist:
+        specifier: ^6.0.0
+        version: 6.0.0(react@18.3.1)(redux@5.0.1)
     devDependencies:
       '@types/node':
         specifier: ^20.12.7
@@ -911,6 +920,17 @@ packages:
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
+  '@reduxjs/toolkit@2.2.3':
+    resolution: {integrity: sha512-76dll9EnJXg4EVcI5YNxZA/9hSAmZsFqzMmNRHvIlzw2WS/twfcVX3ysYrWGJMClwEmChQFC4yRq74tn6fdzRA==}
+    peerDependencies:
+      react: ^16.9.0 || ^17.0.0 || ^18
+      react-redux: ^7.2.1 || ^8.1.3 || ^9.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-redux:
+        optional: true
+
   '@rollup/rollup-android-arm-eabi@4.17.2':
     resolution: {integrity: sha512-NM0jFxY8bB8QLkoKxIQeObCaDlJKewVlIEkuyYKm5An1tdVZ966w2+MPQ2l8LBZLjR+SgyV+nRkTIunzOYBMLQ==}
     cpu: [arm]
@@ -1035,6 +1055,9 @@ packages:
 
   '@types/semver@7.5.8':
     resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
+
+  '@types/use-sync-external-store@0.0.3':
+    resolution: {integrity: sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA==}
 
   '@typescript-eslint/eslint-plugin@7.8.0':
     resolution: {integrity: sha512-gFTT+ezJmkwutUPmB0skOj3GZJtlEGnlssems4AjkVweUPGj7jRwwqg0Hhg7++kPGJqKtTYx+R05Ftww372aIg==}
@@ -1509,6 +1532,9 @@ packages:
     resolution: {integrity: sha512-5Fytz/IraMjqpwfd34ke28PTVMjZjJG2MPn5t7OE4eUCUNf8BAa7b5WUS9/Qvr6mwOQS7Mk6vdsMno5he+T8Xw==}
     engines: {node: '>= 4'}
 
+  immer@10.1.1:
+    resolution: {integrity: sha512-s2MPrmjovJcoMaHtx6K11Ra7oD05NT97w1IC5zpMkT6Atjr7H8LjaDd81iIxUYpMKSRRNMJE703M1Fhr/TctHw==}
+
   import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -1800,6 +1826,21 @@ packages:
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
+  react-redux@9.1.1:
+    resolution: {integrity: sha512-5ynfGDzxxsoV73+4czQM56qF43vsmgJsO22rmAvU5tZT2z5Xow/A2uhhxwXuGTxgdReF3zcp7A80gma2onRs1A==}
+    peerDependencies:
+      '@types/react': ^18.2.25
+      react: ^18.0
+      react-native: '>=0.69'
+      redux: ^5.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react-native:
+        optional: true
+      redux:
+        optional: true
+
   react-refresh@0.14.2:
     resolution: {integrity: sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==}
     engines: {node: '>=0.10.0'}
@@ -1838,8 +1879,28 @@ packages:
     resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
     engines: {node: '>=0.10.0'}
 
+  redux-persist@6.0.0:
+    resolution: {integrity: sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ==}
+    peerDependencies:
+      react: '>=16'
+      redux: '>4.0.0'
+    peerDependenciesMeta:
+      react:
+        optional: true
+
+  redux-thunk@3.1.0:
+    resolution: {integrity: sha512-NW2r5T6ksUKXCabzhL9z+h206HQw/NJkcLm1GPImRQ8IzfXwRGqjVhKJGauHirT0DAuyy6hjdnMZaRoAcy0Klw==}
+    peerDependencies:
+      redux: ^5.0.0
+
+  redux@5.0.1:
+    resolution: {integrity: sha512-M9/ELqF6fy8FwmkpnF0S3YKOqMyoWJ4+CS5Efg2ct3oY9daQvd/Pc71FpGZsVsbl3Cpb+IIcjBDUnnyBdQbq4w==}
+
   regenerator-runtime@0.14.1:
     resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
+
+  reselect@5.1.0:
+    resolution: {integrity: sha512-aw7jcGLDpSgNDyWBQLv2cedml85qd95/iszJjN988zX1t7AVRJi19d9kto5+W7oCfQ94gyo40dVbT6g2k4/kXg==}
 
   resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
@@ -2031,6 +2092,11 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  use-sync-external-store@1.2.2:
+    resolution: {integrity: sha512-PElTlVMwpblvbNqQ82d2n6RjStvdSoNe9FG28kNfz3WiXilJm4DdNkEzRhCZuIDwY8U08WVihhGR5iRqAwfDiw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
   vite-node@1.5.3:
     resolution: {integrity: sha512-axFo00qiCpU/JLd8N1gu9iEYL3xTbMbMrbe5nDp9GL0nb6gurIdZLkkFogZXWnE8Oyy5kfSLwNVIcVsnhE7lgQ==}
@@ -3191,6 +3257,16 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
+  '@reduxjs/toolkit@2.2.3(react-redux@9.1.1(@types/react@18.3.1)(react@18.3.1)(redux@5.0.1))(react@18.3.1)':
+    dependencies:
+      immer: 10.1.1
+      redux: 5.0.1
+      redux-thunk: 3.1.0(redux@5.0.1)
+      reselect: 5.1.0
+    optionalDependencies:
+      react: 18.3.1
+      react-redux: 9.1.1(@types/react@18.3.1)(react@18.3.1)(redux@5.0.1)
+
   '@rollup/rollup-android-arm-eabi@4.17.2':
     optional: true
 
@@ -3290,6 +3366,8 @@ snapshots:
       csstype: 3.1.3
 
   '@types/semver@7.5.8': {}
+
+  '@types/use-sync-external-store@0.0.3': {}
 
   '@typescript-eslint/eslint-plugin@7.8.0(@typescript-eslint/parser@7.8.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)':
     dependencies:
@@ -3845,6 +3923,8 @@ snapshots:
 
   ignore@5.3.1: {}
 
+  immer@10.1.1: {}
+
   import-fresh@3.3.0:
     dependencies:
       parent-module: 1.0.1
@@ -4110,6 +4190,15 @@ snapshots:
 
   react-is@18.3.1: {}
 
+  react-redux@9.1.1(@types/react@18.3.1)(react@18.3.1)(redux@5.0.1):
+    dependencies:
+      '@types/use-sync-external-store': 0.0.3
+      react: 18.3.1
+      use-sync-external-store: 1.2.2(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.1
+      redux: 5.0.1
+
   react-refresh@0.14.2: {}
 
   react-remove-scroll-bar@2.3.6(@types/react@18.3.1)(react@18.3.1):
@@ -4144,7 +4233,21 @@ snapshots:
     dependencies:
       loose-envify: 1.4.0
 
+  redux-persist@6.0.0(react@18.3.1)(redux@5.0.1):
+    dependencies:
+      redux: 5.0.1
+    optionalDependencies:
+      react: 18.3.1
+
+  redux-thunk@3.1.0(redux@5.0.1):
+    dependencies:
+      redux: 5.0.1
+
+  redux@5.0.1: {}
+
   regenerator-runtime@0.14.1: {}
+
+  reselect@5.1.0: {}
 
   resolve-from@4.0.0: {}
 
@@ -4304,6 +4407,10 @@ snapshots:
       tslib: 2.6.2
     optionalDependencies:
       '@types/react': 18.3.1
+
+  use-sync-external-store@1.2.2(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   vite-node@1.5.3(@types/node@20.12.7):
     dependencies:
