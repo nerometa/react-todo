@@ -1,23 +1,11 @@
 import { AddTodo } from '@/components/AddTodo';
 import { useTodo } from '@/hooks/useTodo';
-import {
-	Box,
-	Button,
-	Card,
-	CardBody,
-	Container,
-	Flex,
-	Heading,
-	Stack,
-	Text,
-	VisuallyHidden,
-} from '@chakra-ui/react';
-import { FiTrash } from 'react-icons/fi';
+import { Container, Heading } from '@chakra-ui/react';
 import './App.css';
 import TodoList from './components/TodoList';
 
 function App() {
-	const [todoList, addTodo, deleteTodo] = useTodo();
+	const [todoList, addTodo, updateTodo, deleteTodo] = useTodo();
 
 	return (
 		<Container mx='auto' maxW={750}>
@@ -26,7 +14,11 @@ function App() {
 			</Heading>
 
 			<AddTodo addTodo={addTodo} />
-			<TodoList deleteTodo={deleteTodo} todoList={todoList} />
+			<TodoList
+				updateTodo={updateTodo}
+				deleteTodo={deleteTodo}
+				todoList={todoList}
+			/>
 		</Container>
 	);
 }

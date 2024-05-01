@@ -1,5 +1,3 @@
-import { render } from 'react-dom'
-import { expect, test } from 'vitest'
+import { test } from 'vitest';
 
-test('app should create a todo item', () => {
-})
+test('app should create a todo item', () => {});

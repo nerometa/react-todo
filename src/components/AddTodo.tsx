@@ -23,7 +23,7 @@ export function AddTodo({ addTodo }: Props) {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<FormControl padding={5}>
+			<FormControl padding={5} isRequired>
 				<Flex gap={2}>
 					<Input
 						type='text'
