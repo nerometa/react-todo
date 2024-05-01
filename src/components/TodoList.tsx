@@ -6,13 +6,25 @@ import {
 	Card,
 	CardBody,
 	Flex,
+	FormControl,
+	FormErrorMessage,
+	FormLabel,
+	Input,
+	Modal,
+	ModalBody,
+	ModalCloseButton,
+	ModalContent,
+	ModalFooter,
+	ModalHeader,
+	ModalOverlay,
 	Stack,
 	Text,
+	Textarea,
 	VisuallyHidden,
 	useDisclosure,
 } from '@chakra-ui/react';
+import { useRef, useState } from 'react';
 import { FiEdit3, FiTrash } from 'react-icons/fi';
-import { TodoUpdateModal } from './TodoUpdateModal';
 
 type Props = {
 	todoList: Todo[];
@@ -22,6 +34,28 @@ type Props = {
 
 export default function TodoList({ todoList, deleteTodo, updateTodo }: Props) {
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const [currentTodo, setCurrentTodo] = useState<Todo>({
+		id: '',
+		title: '',
+		description: null,
+	});
+
+	const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+		setCurrentTodo({ ...currentTodo, title: e.target.value });
+	const onDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
+		setCurrentTodo({ ...currentTodo, description: e.target.value });
+
+	const onClickEdit = (todo: Todo) => {
+		updateTodo(todo);
+		onClose();
+	};
+
+	const openModal = (todo: Todo) => {
+		setCurrentTodo(todo);
+		onOpen();
+	};
+
+	const isError = currentTodo.title === '';
 
 	return (
 		<Card id='todo-list' border={0} shadow={0}>
@@ -44,11 +78,11 @@ export default function TodoList({ todoList, deleteTodo, updateTodo }: Props) {
 									</Text>
 								)}
 							</Box>
-							<ButtonGroup>
+							<ButtonGroup px={4}>
 								<Button
 									variant='ghost'
-									onClick={onOpen}
-									title='Edit todo'>
+									onClick={() => openModal(todo)}
+									title='Update todo'>
 									<VisuallyHidden>
 										Edit todo title and description
 									</VisuallyHidden>
@@ -62,12 +96,63 @@ export default function TodoList({ todoList, deleteTodo, updateTodo }: Props) {
 									<FiTrash />
 								</Button>
 							</ButtonGroup>
-							<TodoUpdateModal
-								updateTodo={updateTodo}
-								isOpen={isOpen}
-								onClose={onClose}
-								todo={todo}
-							/>
+
+							<Modal isOpen={isOpen} onClose={onClose} isCentered>
+								<ModalOverlay />
+								<ModalContent>
+									<ModalHeader>Update Todo</ModalHeader>
+									<ModalCloseButton />
+									<ModalBody>
+										<FormControl isInvalid={isError} mb={4}>
+											<FormLabel fontWeight={600}>
+												Title
+											</FormLabel>
+											<Input
+												type='text'
+												placeholder="What's your task today?"
+												value={currentTodo.title}
+												onChange={onTitleChange}
+												required
+											/>
+											{isError && (
+												<FormErrorMessage>
+													Todo title cannot be empty!
+												</FormErrorMessage>
+											)}
+										</FormControl>
+										<FormControl>
+											<FormLabel fontWeight={600}>
+												Description
+											</FormLabel>
+											<Textarea
+												placeholder='What is this todo about?'
+												value={
+													currentTodo.description ||
+													''
+												}
+												onChange={onDescriptionChange}
+											/>
+										</FormControl>
+									</ModalBody>
+
+									<ModalFooter>
+										<Button
+											variant='ghost'
+											mr={3}
+											onClick={onClose}>
+											Close
+										</Button>
+										<Button
+											colorScheme='green'
+											isDisabled={isError}
+											onClick={() =>
+												onClickEdit(currentTodo)
+											}>
+											Edit
+										</Button>
+									</ModalFooter>
+								</ModalContent>
+							</Modal>
 						</Flex>
 					))}
 				</Stack>
