@@ -21,8 +21,8 @@ type Props = {
 	isOpen: boolean;
 	onClose: () => void;
 	currentTodo: Todo;
-	onTitleChange: (e: any) => void;
-	onDescriptionChange: (e: any) => void;
+	onTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	onDescriptionChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
 export default function UpdateTodoModal({
