@@ -48,6 +48,7 @@ export default function TodoItem({ todo }: Props) {
 			<Box flex={1} p={4}>
 				<Checkbox
 					colorScheme='green'
+					borderColor={'green.600'}
 					isChecked={todo.isCompleted}
 					onChange={() =>
 						dispatch(
