@@ -8,14 +8,16 @@ type Props = {
 
 export default function TodoList({ todoList }: Props) {
 	return (
-		<Card id='todo-list' border={0} shadow={0}>
-			<CardBody>
-				<Stack spacing='4'>
-					{todoList.map((todo: Todo) => (
-						<TodoItem key={todo.id} todo={todo} />
-					))}
-				</Stack>
-			</CardBody>
-		</Card>
+		todoList.length > 0 && (
+			<Card id='todo-list' border={0} shadow={0}>
+				<CardBody>
+					<Stack spacing='4'>
+						{todoList.map((todo: Todo) => (
+							<TodoItem key={todo.id} todo={todo} />
+						))}
+					</Stack>
+				</CardBody>
+			</Card>
+		)
 	);
 }
